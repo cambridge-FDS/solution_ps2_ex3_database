@@ -47,5 +47,5 @@ Then run the following command in the terminal being at the root of the reposito
 and download the data.
 
 ```bash
-python nba/data_loader.py --user_name "your_user_name" --api_key "your_api_key"
+python nba/data_loader.py -u "your_user_name" -k "your_api_key" --d "wyattowalsh/basketball"
 ```

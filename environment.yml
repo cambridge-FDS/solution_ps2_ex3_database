@@ -9,3 +9,4 @@ dependencies:
   - seaborn
   - pre-commit
   - ipykernel
+  - click

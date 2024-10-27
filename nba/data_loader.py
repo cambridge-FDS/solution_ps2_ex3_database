@@ -2,6 +2,7 @@ import kaggle
 import os
 import json
 from pathlib import Path
+import click
 
 
 def kaggle_api_key(
@@ -34,7 +35,7 @@ def kaggle_api_key(
             print(f"Kaggle API key has been saved to {kaggle_json}")
 
 
-def kaggle_download_data() -> None:
+def kaggle_download_data(dataset: str) -> None:
     """
     Function that downloads the NBA database from Kaggle
     """
@@ -44,12 +45,34 @@ def kaggle_download_data() -> None:
     data_path.mkdir(parents=True, exist_ok=True)
 
     kaggle.api.authenticate()
-    kaggle.api.dataset_download_files(
-        "wyattowalsh/basketball", path=data_path, unzip=True
-    )
+    kaggle.api.dataset_download_files(dataset, path=data_path, unzip=True)
     print(f"Data has been downloaded to {data_path}")
 
 
+@click.command()  # type: ignore
+@click.option(  # type: ignore
+    "--dataset",
+    "-d",
+    required=True,
+    help='Kaggle dataset identifier (e.g., "username/dataset-name")',
+)
+@click.option(  # type: ignore
+    "--user-name",
+    "-u",
+    required=False,
+    help="Your Kaggle username",
+)
+@click.option(
+    "--api-key", "-k", required=False, help="Your Kaggle API key"
+)  # type: ignore
+def main(
+    dataset: str,
+    user_name: str | None = None,
+    api_key: str | None = None,
+) -> None:
+    kaggle_api_key(user_name=user_name, api_key=api_key)
+    kaggle_download_data(dataset=dataset)
+
+
 if __name__ == "__main__":
-    kaggle_api_key(user_name="adrian", api_key="1234")
-    kaggle_download_data()
+    main()

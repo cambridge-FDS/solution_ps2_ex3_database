@@ -1,0 +1,11 @@
+name: nba
+channels:
+  - defaults
+dependencies:
+  - polars
+  - duckdb
+  - kaggle
+  - sqlite
+  - seaborn
+  - pre-commit
+  - ipykernel

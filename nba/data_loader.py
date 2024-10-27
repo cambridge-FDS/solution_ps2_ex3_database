@@ -3,11 +3,6 @@ import os
 import json
 from pathlib import Path
 
-# write
-# 2. get API keys and save to ~/.kaggle/kaggle.json
-# 3. download the NBA database from:
-# https://www.kaggle.com/datasets/wyattowalsh/basketball
-
 
 def kaggle_api_key(
     user_name: str | None = None, api_key: str | None = None

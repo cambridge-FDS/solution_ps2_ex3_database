@@ -15,7 +15,7 @@ conda env create -f environment.yml
 Activate the environment by running:
 
 ```bash
-conda activate solution_ps2_ex3_database
+conda activate nba
 ```
 
 ## Pre-commit
